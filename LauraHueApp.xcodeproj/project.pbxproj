@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1008DCDE19EDFFD3009028A2 /* LightTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1008DCDD19EDFFD3009028A2 /* LightTableViewController.swift */; };
+		1008DCE219EE0349009028A2 /* LightControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1008DCE119EE0349009028A2 /* LightControlTableViewCell.swift */; };
+		1008DCE519EE0B79009028A2 /* LightOnOffTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1008DCE419EE0B79009028A2 /* LightOnOffTableViewCell.swift */; };
+		1008DCE719EF5589009028A2 /* LightPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1008DCE619EF5589009028A2 /* LightPreset.swift */; };
+		1008DCE919EF564C009028A2 /* CDMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1008DCE819EF564C009028A2 /* CDMgr.swift */; };
 		103FE52D19E4B0F900926F8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103FE52C19E4B0F900926F8A /* AppDelegate.swift */; };
 		103FE53019E4B0F900926F8A /* LauraHueApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 103FE52E19E4B0F900926F8A /* LauraHueApp.xcdatamodeld */; };
 		103FE53219E4B0F900926F8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103FE53119E4B0F900926F8A /* ViewController.swift */; };
@@ -14,6 +19,11 @@
 		103FE53719E4B0F900926F8A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 103FE53619E4B0F900926F8A /* Images.xcassets */; };
 		103FE53A19E4B0F900926F8A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 103FE53819E4B0F900926F8A /* LaunchScreen.xib */; };
 		103FE54619E4B0F900926F8A /* LauraHueAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103FE54519E4B0F900926F8A /* LauraHueAppTests.swift */; };
+		103FE55019E4B1A900926F8A /* BridgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103FE54F19E4B1A900926F8A /* BridgeManager.swift */; };
+		103FE55219E4C38800926F8A /* Lights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103FE55119E4C38800926F8A /* Lights.swift */; };
+		10F3BDE119E8E0E300C37BE1 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F3BDE019E8E0E300C37BE1 /* TableViewController.swift */; };
+		10F3BDE319E977F300C37BE1 /* LightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F3BDE219E977F300C37BE1 /* LightViewController.swift */; };
+		10F3BDE719E978AF00C37BE1 /* hello.c in Sources */ = {isa = PBXBuildFile; fileRef = 10F3BDE519E978AF00C37BE1 /* hello.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1008DCDD19EDFFD3009028A2 /* LightTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTableViewController.swift; sourceTree = "<group>"; };
+		1008DCE119EE0349009028A2 /* LightControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LightControlTableViewCell.swift; path = ../LightControlTableViewCell.swift; sourceTree = "<group>"; };
+		1008DCE419EE0B79009028A2 /* LightOnOffTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightOnOffTableViewCell.swift; sourceTree = "<group>"; };
+		1008DCE619EF5589009028A2 /* LightPreset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightPreset.swift; sourceTree = "<group>"; };
+		1008DCE819EF564C009028A2 /* CDMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDMgr.swift; sourceTree = "<group>"; };
 		103FE52719E4B0F900926F8A /* LauraHueApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LauraHueApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		103FE52B19E4B0F900926F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		103FE52C19E4B0F900926F8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +53,13 @@
 		103FE53F19E4B0F900926F8A /* LauraHueAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LauraHueAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		103FE54419E4B0F900926F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		103FE54519E4B0F900926F8A /* LauraHueAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauraHueAppTests.swift; sourceTree = "<group>"; };
+		103FE54F19E4B1A900926F8A /* BridgeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeManager.swift; sourceTree = "<group>"; };
+		103FE55119E4C38800926F8A /* Lights.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lights.swift; sourceTree = "<group>"; };
+		10F3BDE019E8E0E300C37BE1 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		10F3BDE219E977F300C37BE1 /* LightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightViewController.swift; sourceTree = "<group>"; };
+		10F3BDE419E978AF00C37BE1 /* LauraHueApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LauraHueApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		10F3BDE519E978AF00C37BE1 /* hello.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hello.c; sourceTree = "<group>"; };
+		10F3BDE619E978AF00C37BE1 /* hello.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hello.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +80,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1008DCE319EE0B59009028A2 /* LightTableControl */ = {
+			isa = PBXGroup;
+			children = (
+				1008DCDD19EDFFD3009028A2 /* LightTableViewController.swift */,
+				1008DCE119EE0349009028A2 /* LightControlTableViewCell.swift */,
+				1008DCE419EE0B79009028A2 /* LightOnOffTableViewCell.swift */,
+			);
+			name = LightTableControl;
+			sourceTree = "<group>";
+		};
 		103FE51E19E4B0F900926F8A = {
 			isa = PBXGroup;
 			children = (
@@ -79,13 +111,23 @@
 		103FE52919E4B0F900926F8A /* LauraHueApp */ = {
 			isa = PBXGroup;
 			children = (
+				1008DCE319EE0B59009028A2 /* LightTableControl */,
 				103FE52C19E4B0F900926F8A /* AppDelegate.swift */,
 				103FE53119E4B0F900926F8A /* ViewController.swift */,
+				103FE54F19E4B1A900926F8A /* BridgeManager.swift */,
+				103FE55119E4C38800926F8A /* Lights.swift */,
 				103FE53319E4B0F900926F8A /* Main.storyboard */,
 				103FE53619E4B0F900926F8A /* Images.xcassets */,
 				103FE53819E4B0F900926F8A /* LaunchScreen.xib */,
 				103FE52E19E4B0F900926F8A /* LauraHueApp.xcdatamodeld */,
+				1008DCE619EF5589009028A2 /* LightPreset.swift */,
 				103FE52A19E4B0F900926F8A /* Supporting Files */,
+				10F3BDE019E8E0E300C37BE1 /* TableViewController.swift */,
+				10F3BDE219E977F300C37BE1 /* LightViewController.swift */,
+				10F3BDE519E978AF00C37BE1 /* hello.c */,
+				10F3BDE619E978AF00C37BE1 /* hello.h */,
+				10F3BDE419E978AF00C37BE1 /* LauraHueApp-Bridging-Header.h */,
+				1008DCE819EF564C009028A2 /* CDMgr.swift */,
 			);
 			path = LauraHueApp;
 			sourceTree = "<group>";
@@ -164,6 +206,7 @@
 				TargetAttributes = {
 					103FE52619E4B0F900926F8A = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = M2RR26GX86;
 					};
 					103FE53E19E4B0F900926F8A = {
 						CreatedOnToolsVersion = 6.0;
@@ -216,8 +259,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				103FE53219E4B0F900926F8A /* ViewController.swift in Sources */,
+				10F3BDE119E8E0E300C37BE1 /* TableViewController.swift in Sources */,
+				1008DCE519EE0B79009028A2 /* LightOnOffTableViewCell.swift in Sources */,
+				1008DCE919EF564C009028A2 /* CDMgr.swift in Sources */,
+				1008DCE719EF5589009028A2 /* LightPreset.swift in Sources */,
 				103FE53019E4B0F900926F8A /* LauraHueApp.xcdatamodeld in Sources */,
+				103FE55219E4C38800926F8A /* Lights.swift in Sources */,
+				10F3BDE719E978AF00C37BE1 /* hello.c in Sources */,
+				103FE55019E4B1A900926F8A /* BridgeManager.swift in Sources */,
+				1008DCDE19EDFFD3009028A2 /* LightTableViewController.swift in Sources */,
 				103FE52D19E4B0F900926F8A /* AppDelegate.swift in Sources */,
+				1008DCE219EE0349009028A2 /* LightControlTableViewCell.swift in Sources */,
+				10F3BDE319E977F300C37BE1 /* LightViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,9 +393,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = LauraHueApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LauraHueApp/LauraHueApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -350,9 +406,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = LauraHueApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LauraHueApp/LauraHueApp-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -409,6 +467,7 @@
 				103FE54B19E4B0F900926F8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		103FE54C19E4B0F900926F8A /* Build configuration list for PBXNativeTarget "LauraHueAppTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +476,7 @@
 				103FE54E19E4B0F900926F8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
