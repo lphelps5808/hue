@@ -22,9 +22,6 @@ class CDMgr {
     }
     
     func savePreset(name: String, hue: Double, sat: Double, bri: Double) {
-        
-        println(__FUNCTION__)
-        
         var preset = NSEntityDescription.insertNewObjectForEntityForName("LightPreset", inManagedObjectContext: context) as LightPreset
         preset.name = name
         preset.hue = hue

@@ -23,11 +23,7 @@ class LightTableViewController: UITableViewController {
         
         var newPresetButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "buttonPressed:")
         self.navigationItem.rightBarButtonItem = newPresetButton
-        
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "presetCell2")
-        
-//        self.tableView.allowsMultipleSelectionDuringEditing = false
-    
         buildDataSource()
         
     }
@@ -49,8 +45,6 @@ class LightTableViewController: UITableViewController {
             }
             dataSource.append(presetsArray)
         }
-        
-        println(dataSource)
     }
     
     override func didReceiveMemoryWarning() {
@@ -136,14 +130,6 @@ class LightTableViewController: UITableViewController {
         return false
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
-            
-            
-        }
-    }
-    
     func hueSliderChanged(sender: UISlider) {
         let newValue = Int(sender.value)
         if newValue > light.hue + kMinStep || newValue < light.hue - kMinStep {
@@ -175,7 +161,10 @@ class LightTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        if indexPath.section == 0 {
+            return 96
+        }
+        return 44
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -215,17 +204,19 @@ class LightTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
+            var dataObject = dataSource[indexPath.section] as [LightPreset]
+            dataObject.removeAtIndex(indexPath.row)
+            dataSource[indexPath.section] = dataObject
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+
 
     /*
     // Override to support rearranging the table view.

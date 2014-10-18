@@ -38,11 +38,11 @@ class LightOnOffTableViewCell: UITableViewCell {
         let width = self.contentView.bounds.size.width
         
         let switchYPos = (height - onOffSwitch.frame.size.height) * 0.5
-        onOffSwitch.frame = CGRect(x: 10, y: switchYPos, width: onOffSwitch.frame.size.width, height: onOffSwitch.frame.size.height)
+        onOffSwitch.frame = CGRect(x: width - onOffSwitch.frame.size.width - 15, y: switchYPos, width: onOffSwitch.frame.size.width, height: onOffSwitch.frame.size.height)
         
         label.sizeToFit()
         let labelYPos = (height - label.frame.size.height) * 0.5
-        label.frame = CGRect(x: onOffSwitch.frame.origin.x + onOffSwitch.frame.size.width + 8, y: labelYPos, width: label.frame.size.width, height: label.frame.size.height)
+        label.frame = CGRect(x: 15, y: labelYPos, width: label.frame.size.width, height: label.frame.size.height)
         
     }
 
