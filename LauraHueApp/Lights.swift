@@ -8,13 +8,32 @@
 
 import Foundation
 
+@objc protocol LightsDelegateProtocol {
+    func didChangeState()
+}
+
 class Lights {
+    
+    weak var delegate: LightsDelegateProtocol?
+    
     var modelid : String?
     var name : String?
     var state : Bool?
-    var hue: Int!
-    var bri: Int!
-    var sat: Int!
+    var hue: Int! {
+        didSet {
+            self.delegate?.didChangeState()
+        }
+    }
+    var bri: Int! {
+        didSet {
+            self.delegate?.didChangeState()
+        }
+    }
+    var sat: Int! {
+        didSet {
+            self.delegate?.didChangeState()
+        }
+    }
     
     var description: String {
         get {

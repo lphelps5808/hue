@@ -9,11 +9,18 @@
 import UIKit
 import CoreData
 
-class LightTableViewController: UITableViewController {
+enum LightsTableSection: Int {
+    case Presets = 2
+    case OnOff = 1
+    case Controls = 0
+}
+
+class LightTableViewController: UITableViewController, LightsDelegateProtocol {
 
     let kMinStep: Int = 10
     var light: Lights!
     var dataSource = NSMutableArray()
+    var selectedPreset: NSIndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +34,18 @@ class LightTableViewController: UITableViewController {
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "presetCell2")
         buildDataSource()
         
+        light.delegate = self
     }
 
+    func didChangeState() {
+        if selectedPreset != nil {
+            if dataSource.count >= 3 {
+                selectedPreset = nil
+                self.tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .Automatic)
+            }
+        }
+    }
+    
     func buildDataSource() {
 
         dataSource.removeAllObjects()
@@ -125,6 +142,18 @@ class LightTableViewController: UITableViewController {
             let dataObject = dataSection[indexPath.row] as LightPreset
             let cell = tableView.dequeueReusableCellWithIdentifier("presetCell2", forIndexPath: indexPath) as UITableViewCell
             cell.textLabel?.text = dataObject.name
+            
+            if let preset = selectedPreset {
+                if preset == indexPath {
+                    cell.accessoryType = .Checkmark
+                } else {
+                    cell.accessoryType = .None
+                }
+            } else {
+                cell.accessoryType = .None
+            }
+
+            
             return cell
         }
         return tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
@@ -138,6 +167,8 @@ class LightTableViewController: UITableViewController {
         }
         return false
     }
+    
+    // MARK: - Slider Logic
     
     func hueSliderChanged(sender: UISlider) {
         let newValue = Int(sender.value)
@@ -181,6 +212,7 @@ class LightTableViewController: UITableViewController {
         let object: AnyObject = section[indexPath.row]
         
         if object is LightPreset {
+
             let preset = object as LightPreset
             BridgeManager.sharedInstance.changeColor(preset.hue, lightID: light.modelid!)
             BridgeManager.sharedInstance.changeBrightness(preset.brightness, lightID: light.modelid!)
@@ -189,6 +221,32 @@ class LightTableViewController: UITableViewController {
             light.bri = preset.brightness
             light.sat = preset.saturation
             light.hue = preset.hue
+            
+            let visibleIndexPaths = self.tableView.indexPathsForVisibleRows()!
+            let animationSpeed: NSTimeInterval = 0.25
+            for indexPath in visibleIndexPaths {
+                let ip = indexPath as NSIndexPath
+                if ip.section == 0 {
+                    let cell = tableView.cellForRowAtIndexPath(ip) as LightControlTableViewCell
+                    if ip.row == 0 { //hue
+                        UIView.animateWithDuration(animationSpeed, animations: { () -> Void in
+                            cell.controlSlider.setValue(Float(self.light.hue), animated: true)
+                        })
+                    } else if ip.row == 1 { //sat
+                        UIView.animateWithDuration(animationSpeed, animations: { () -> Void in
+                            cell.controlSlider.setValue(Float(self.light.sat), animated: true)
+                        })
+                    } else if ip.row == 2 { //bri
+                        UIView.animateWithDuration(animationSpeed, animations: { () -> Void in
+                            cell.controlSlider.setValue(Float(self.light.bri), animated: true)
+                        })
+                    }
+                }
+            }
+            
+            self.selectedPreset = indexPath
+            self.tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .Automatic)
+            
         }
     }
     
