@@ -208,10 +208,19 @@ class LightTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
+            
             var dataObject = dataSource[indexPath.section] as [LightPreset]
+            
             dataObject.removeAtIndex(indexPath.row)
             dataSource[indexPath.section] = dataObject
+            
+            CDMgr.sharedInstance.context.deleteObject(dataObject[indexPath.row])
+            CDMgr.sharedInstance.context.save(nil)
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            //
+            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
