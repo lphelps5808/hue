@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class LightTableViewController: UITableViewController {
 
     let kMinStep: Int = 10
     var light: Lights!
-    var dataSource: [AnyObject] = []
+    var dataSource = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,21 +30,22 @@ class LightTableViewController: UITableViewController {
     }
 
     func buildDataSource() {
-        dataSource.removeAll(keepCapacity: false)
-        var presets = CDMgr.sharedInstance.procurePresets()
+
+        dataSource.removeAllObjects()
+        var presets = CDMgr.sharedInstance.procurePresets() as NSArray
         
-        var controls = ["hue", "sat", "bri"]
-        dataSource.append(controls)
+        var controls = ["hue", "sat", "bri"] as NSArray
+        dataSource.addObject(controls)
         
-        var onOff = ["on"]
-        dataSource.append(onOff)
+        var onOff = ["on"] as NSArray
+        dataSource.addObject(onOff)
         
         if presets.count > 0 {
-            var presetsArray: [LightPreset] = []
+            var presetsArray = NSMutableArray()
             for p in presets {
-                presetsArray.append(p)
+                presetsArray.addObject(p)
             }
-            dataSource.append(presetsArray)
+            dataSource.addObject(presetsArray)
         }
     }
     
@@ -58,9 +60,16 @@ class LightTableViewController: UITableViewController {
         }
         let saveAction = UIAlertAction(title: "Save", style: .Default) { (action) -> Void in
             if let nameTextField = av.textFields![0] as? UITextField {
-                CDMgr.sharedInstance.savePreset(nameTextField.text, hue: Double(self.light.hue), sat: Double(self.light.sat), bri: Double(self.light.bri))
-                self.buildDataSource()
-                self.tableView.reloadData()
+                var preset = CDMgr.sharedInstance.savePreset(nameTextField.text, hue: Double(self.light.hue), sat: Double(self.light.sat), bri: Double(self.light.bri))
+                if self.dataSource.count < 3 {
+                    var presetsArray = NSMutableArray()
+                    presetsArray.addObject(preset)
+                    self.dataSource.addObject(presetsArray)
+                    self.tableView.insertSections(NSIndexSet(index: 2), withRowAnimation: .Automatic)
+                } else {
+                    self.dataSource.objectAtIndex(2).insertObject(preset, atIndex: 0)
+                    self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 2)], withRowAnimation: .Automatic)
+                }
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in
@@ -205,21 +214,27 @@ class LightTableViewController: UITableViewController {
     */
 
     
+    // MARK: - Table Editing
+    
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             
-            var dataObject = dataSource[indexPath.section] as [LightPreset]
+            var dataObject = dataSource[indexPath.section] as NSMutableArray
             
-            dataObject.removeAtIndex(indexPath.row)
-            dataSource[indexPath.section] = dataObject
+            CDMgr.sharedInstance.context.deleteObject(dataObject.objectAtIndex(indexPath.row) as NSManagedObject)
             
-            CDMgr.sharedInstance.context.deleteObject(dataObject[indexPath.row])
+            dataObject.removeObjectAtIndex(indexPath.row)
+            
             CDMgr.sharedInstance.context.save(nil)
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            
-            //
+            if dataObject.count == 0 {
+                dataSource.removeObjectAtIndex(2)
+                tableView.deleteSections(NSIndexSet(index: 2), withRowAnimation: .Automatic)
+            } else {
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            }
             
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

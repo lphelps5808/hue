@@ -21,13 +21,15 @@ class CDMgr {
         return _sharedCDMgrInstance
     }
     
-    func savePreset(name: String, hue: Double, sat: Double, bri: Double) {
+    func savePreset(name: String, hue: Double, sat: Double, bri: Double) -> LightPreset {
         var preset = NSEntityDescription.insertNewObjectForEntityForName("LightPreset", inManagedObjectContext: context) as LightPreset
         preset.name = name
         preset.hue = hue
         preset.saturation = sat
         preset.brightness = bri
         context.save(nil)
+        
+        return preset
     }
     
     func procurePresets() -> [LightPreset] {
