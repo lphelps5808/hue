@@ -24,15 +24,22 @@ class TableViewController: UITableViewController {
 
     func addDataToTableView() {
         BridgeManager.sharedInstance.seeLights { (lights, error) -> Void in
+            
+            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.dataSource = lights!
-                self.tableView.reloadData()
-                
-                if self.refreshControl?.refreshing == true {
-                    self.refreshControl?.endRefreshing()
+                if error != nil {
+                    BridgeManager.sharedInstance.errorController("THIS IS WRONG", presenter: self)
+                } else {
+                    self.dataSource = lights!
+                    self.tableView.reloadData()
+                    
+                    if self.refreshControl?.refreshing == true {
+                        self.refreshControl?.endRefreshing()
+                    }
                 }
-                
             })
+            
+            
         }
     }
     

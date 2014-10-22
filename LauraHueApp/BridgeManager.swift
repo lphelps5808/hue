@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 private let _bridgeManagerSharedInstance = BridgeManager()
 
@@ -18,6 +19,15 @@ class BridgeManager {
     
     class var sharedInstance: BridgeManager {
         return _bridgeManagerSharedInstance
+    }
+    
+    func showErrorController(message : String, presenter: UIViewController) {
+        let alert = UIAlertController(title: "We're Sorry", message: message, preferredStyle: .Alert)
+        let actionObj = UIAlertAction(title: "Okay", style: .Default) { (action) -> Void in
+            presenter.dismissViewControllerAnimated(true, completion: nil)
+        }
+        alert.addAction(actionObj)
+        presenter.presentViewController(alert, animated: true, completion: nil)
     }
     
     func seeLights(completion: ([Lights]?, NSError?) -> Void) {
@@ -46,9 +56,12 @@ class BridgeManager {
                         lights.append(Lights(modelid: key, name: value["name"] as String?, state: on, hue: hue, bri: bri, sat : sat))
                     }
                     completion(lights, nil)
+                } else {
+                    let error = NSError(domain: "com.laura.hue", code: 2, userInfo: nil)
+                    completion(nil, error)
                 }
             } else {
-                println(error.description)
+                completion(nil, error)
             }
         }
     }
